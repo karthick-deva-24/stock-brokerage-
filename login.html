@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Apex Brokerage</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <main class="main-container">
+    <section class="hero" style="min-height: 100vh; padding: 48px 24px; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative;">
+      <div class="hero-bg"></div>
+      <canvas id="sonar-canvas" class="sonar-canvas"></canvas>
+      
+      <a href="index.html" class="nav-brand" style="margin-bottom: 64px; position:relative; z-index:10; font-size: 2rem;">
+        <img src="logo_0081.webp" alt="Apex Brokerage Logo" style="height:64px; width:auto; object-fit:contain;">
+      </a>
+
+      <div class="container grid grid-cols-2" style="position:relative; z-index:10; gap: 64px; align-items: start; max-width: 1120px;">
+        
+        <!-- Left Side: Login Form -->
+        <div style="width: 100%; max-width: 480px; margin: 0 auto;">
+          <div class="text-center mb-8">
+            <h1 id="formTitle" class="text-balance" style="font-size: 2.5rem; margin-bottom: 16px;">Welcome Back to Your Investment Journey</h1>
+            <p id="formSubtitle" class="text-secondary" style="font-size: 1.125rem;">Secure Account Login</p>
+          </div>
+
+          <div class="card" style="padding: 32px;">
+            <!-- Login Form -->
+            <form id="loginForm" style="display:flex; flex-direction:column; gap:24px;">
+              <div class="form-group" style="margin-bottom:0;">
+                <label>Role</label>
+                <select id="roleSelect" class="form-control" required style="cursor: pointer; appearance: none; background-image: url('data:image/svg+xml;utf8,<svg fill=%22%23ffffff%22 height=%2224%22 viewBox=%220 0 24 24%22 width=%2224%22 xmlns=%22http://www.w3.org/2000/svg%22><path d=%22M7 10l5 5 5-5z%22/><path d=%22M0 0h24v24H0z%22 fill=%22none%22/></svg>'); background-repeat: no-repeat; background-position-x: 98%; background-position-y: center;">
+                  <option value="" disabled selected>Select your role</option>
+                  <option value="investor" style="background: var(--bg-color); color: var(--text-primary);">Investor</option>
+                  <option value="admin" style="background: var(--bg-color); color: var(--text-primary);">Admin</option>
+                </select>
+              </div>
+              <div class="form-group" style="margin-bottom:0;">
+                <label>Email Address</label>
+                <input type="email" class="form-control" placeholder="Enter your email" required />
+              </div>
+              <div class="form-group" style="margin-bottom:0;">
+                <label>Password</label>
+                <input type="password" class="form-control" placeholder="Enter your password" required />
+              </div>
+              
+              <div style="display:flex; justify-content:space-between; align-items:center; font-size:0.875rem;">
+                <label style="display:flex; align-items:center; gap:8px; cursor:pointer; color:rgba(255,255,255,0.8);">
+                  <input type="checkbox" style="accent-color:var(--accent-color); width:16px; height:16px;" />
+                  Remember Me
+                </label>
+                <div style="display: flex; flex-direction: column; text-align: right; gap: 4px;">
+                  <a href="#" style="color:var(--accent-color); font-weight:500;">Forgot Password?</a>
+                </div>
+              </div>
+
+              <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 8px;">
+                <button type="submit" class="btn-primary" style="width:100%; justify-content:center; padding:12px; font-size:1rem;">Login</button>
+                <a href="#" id="showSignupBtn" class="btn-secondary" style="width:100%; justify-content:center; padding:12px; font-size:1rem;">Create an Account</a>
+              </div>
+            </form>
+
+            <!-- Signup Form -->
+            <form id="signupForm" style="display:none; flex-direction:column; gap:24px;">
+              <div class="form-group" style="margin-bottom:0;">
+                <label>Role Selection</label>
+                <select id="signupRoleSelect" class="form-control" required style="cursor: pointer; appearance: none; background-image: url('data:image/svg+xml;utf8,<svg fill=%22%23ffffff%22 height=%2224%22 viewBox=%220 0 24 24%22 width=%2224%22 xmlns=%22http://www.w3.org/2000/svg%22><path d=%22M7 10l5 5 5-5z%22/><path d=%22M0 0h24v24H0z%22 fill=%22none%22/></svg>'); background-repeat: no-repeat; background-position-x: 98%; background-position-y: center;">
+                  <option value="" disabled selected>Select your role</option>
+                  <option value="investor" style="background: var(--bg-color); color: var(--text-primary);">Investor</option>
+                  <option value="admin" style="background: var(--bg-color); color: var(--text-primary);">Admin</option>
+                </select>
+              </div>
+              <div class="form-group" style="margin-bottom:0;">
+                <label>Name</label>
+                <input type="text" class="form-control" placeholder="Enter your full name" required />
+              </div>
+              <div class="form-group" style="margin-bottom:0;">
+                <label>Email Address</label>
+                <input type="email" class="form-control" placeholder="Enter your email" required />
+              </div>
+              <div class="form-group" style="margin-bottom:0;">
+                <label>Password</label>
+                <input type="password" class="form-control" placeholder="Create a password" required />
+              </div>
+              <div class="form-group" style="margin-bottom:0;">
+                <label>Confirm Password</label>
+                <input type="password" class="form-control" placeholder="Confirm your password" required />
+              </div>
+
+              <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 8px;">
+                <button type="submit" class="btn-primary" style="width:100%; justify-content:center; padding:12px; font-size:1rem;">Register Account</button>
+                <a href="#" id="showLoginBtn" class="btn-secondary" style="width:100%; justify-content:center; padding:12px; font-size:1rem;">Back to Login</a>
+              </div>
+            </form>
+
+            <div style="margin-top: 24px; text-align: center;">
+              <a id="backToHomeBtn" href="index.html" style="color:var(--text-secondary); font-size:0.875rem; text-decoration:none; display:inline-flex; align-items:center; gap:8px; transition: color 0.2s;" onmouseover="this.style.color='var(--text-primary)'" onmouseout="this.style.color='var(--text-secondary)'">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                Back to Home
+              </a>
+            </div>
+
+            <script>
+              // Form Toggle Logic
+              document.getElementById('showSignupBtn').addEventListener('click', (e) => {
+                e.preventDefault();
+                document.getElementById('loginForm').style.display = 'none';
+                document.getElementById('signupForm').style.display = 'flex';
+                document.getElementById('formTitle').innerText = 'Create your Apex Account';
+                document.getElementById('formSubtitle').innerText = 'Join our platform today';
+              });
+
+              document.getElementById('showLoginBtn').addEventListener('click', (e) => {
+                e.preventDefault();
+                document.getElementById('signupForm').style.display = 'none';
+                document.getElementById('loginForm').style.display = 'flex';
+                document.getElementById('formTitle').innerText = 'Welcome Back to Your Investment Journey';
+                document.getElementById('formSubtitle').innerText = 'Secure Account Login';
+              });
+
+              // Redirection Logic
+              document.getElementById('loginForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const role = document.getElementById('roleSelect').value;
+                if (role === 'investor') {
+                  window.location.href = 'investor_dashboard.html';
+                } else if (role === 'admin') {
+                  window.location.href = 'admin_dashboard.html';
+                }
+              });
+
+              document.getElementById('signupForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                // Successfully registered; redirect back to login view
+                document.getElementById('signupForm').style.display = 'none';
+                document.getElementById('loginForm').style.display = 'flex';
+                document.getElementById('formTitle').innerText = 'Welcome Back to Your Investment Journey';
+                document.getElementById('formSubtitle').innerText = 'Secure Account Login';
+                document.getElementById('signupForm').reset();
+              });
+            </script>
+          </div>
+          
+
+        </div>
+
+        <!-- Right Side: Info Sections -->
+        <div style="display: flex; flex-direction: column; gap: 48px;">
+          
+          <!-- Alternative Access -->
+          <div>
+            <h3 style="font-size: 1.5rem; margin-bottom: 24px; border-bottom: 1px solid var(--border-color); padding-bottom: 12px;">Choose Your Access</h3>
+            <div class="grid grid-cols-2" style="gap: 24px;">
+              <div class="card" style="padding: 24px;">
+                <h4 style="color:var(--accent-color); font-size:1.125rem; margin-bottom:12px;">Investor Login</h4>
+                <ul style="list-style:none; display:flex; flex-direction:column; gap:8px; font-size:0.875rem; color:var(--text-secondary);">
+                  <li>✓ Access portfolio</li>
+                  <li>✓ View holdings</li>
+                  <li>✓ Track investments</li>
+                  <li>✓ Manage account</li>
+                </ul>
+              </div>
+              <div class="card" style="padding: 24px;">
+                <h4 style="color:var(--accent-color); font-size:1.125rem; margin-bottom:12px;">Trading Login</h4>
+                <ul style="list-style:none; display:flex; flex-direction:column; gap:8px; font-size:0.875rem; color:var(--text-secondary);">
+                  <li>✓ Access trading platform</li>
+                  <li>✓ Monitor markets</li>
+                  <li>✓ Place eligible orders</li>
+                  <li>✓ View positions</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Security -->
+          <div>
+            <h3 style="font-size: 1.5rem; margin-bottom: 24px; border-bottom: 1px solid var(--border-color); padding-bottom: 12px;">Your Security Comes First</h3>
+            <div class="grid grid-cols-2" style="gap: 16px;">
+              <div style="display:flex; align-items:center; gap:8px; font-size:0.875rem;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                Secure authentication
+              </div>
+              <div style="display:flex; align-items:center; gap:8px; font-size:0.875rem;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                Account protection
+              </div>
+              <div style="display:flex; align-items:center; gap:8px; font-size:0.875rem;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg>
+                Encrypted data
+              </div>
+              <div style="display:flex; align-items:center; gap:8px; font-size:0.875rem;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+                Login alerts
+              </div>
+            </div>
+          </div>
+
+          <!-- Premium CTA -->
+          <div class="card" style="background: rgba(99,102,241,0.1); border-color: var(--accent-color); text-align: center; padding: 24px;">
+            <h4 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 8px;">Secure Access. Smarter Market Experience.</h4>
+            <p style="font-size: 0.875rem; color: var(--text-secondary);">Your gateway to professional-grade tools.</p>
+          </div>
+
+        </div>
+      </div>
+      
+    </section>
+    
+
+  </main>
+  <script src="sonar.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
+

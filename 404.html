@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 - Page Not Found | Stackly Brokerage</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--bg-color);
+      overflow-x: hidden;
+    }
+    .error-animation-container {
+      position: relative;
+      width: clamp(200px, 40vw, 300px);
+      height: clamp(200px, 40vw, 300px);
+      margin: 0 auto 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .orb {
+      width: clamp(60px, 12vw, 100px);
+      height: clamp(60px, 12vw, 100px);
+      background: radial-gradient(circle, var(--accent-color) 0%, transparent 70%);
+      border-radius: 50%;
+      position: absolute;
+      animation: pulse 3s infinite ease-in-out, float 6s infinite ease-in-out;
+      filter: blur(8px);
+      box-shadow: 0 0 40px var(--accent-color);
+    }
+    .ring {
+      position: absolute;
+      width: clamp(140px, 28vw, 200px);
+      height: clamp(140px, 28vw, 200px);
+      border: 1px solid rgba(99,102,241,0.4);
+      border-radius: 50%;
+      animation: spin 8s linear infinite;
+    }
+    .ring:nth-child(2) {
+      width: clamp(170px, 34vw, 240px);
+      height: clamp(170px, 34vw, 240px);
+      animation: spin-reverse 12s linear infinite;
+      border-color: rgba(99,102,241,0.2);
+    }
+    .ring:nth-child(3) {
+      width: clamp(110px, 22vw, 160px);
+      height: clamp(110px, 22vw, 160px);
+      animation: spin 6s linear infinite;
+      border-color: rgba(99,102,241,0.6);
+      border-style: dashed;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 0.8; }
+      50% { transform: scale(1.4); opacity: 0.4; }
+    }
+    @keyframes float {
+      0%, 100% { top: 35%; }
+      50% { top: 25%; }
+    }
+    @keyframes spin {
+      100% { transform: rotate(360deg); }
+    }
+    @keyframes spin-reverse {
+      100% { transform: rotate(-360deg); }
+    }
+    
+    .actions-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: center;
+      margin-top: 32px;
+    }
+    
+    h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      margin-bottom: 16px;
+      text-align: center;
+    }
+    
+    p {
+      color: var(--text-secondary);
+      max-width: 500px;
+      padding: 0 24px;
+      margin-bottom: 0;
+      font-size: clamp(1rem, 2.5vw, 1.125rem);
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <main style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; width: 100%; padding: 24px;">
+    
+    <div class="error-animation-container">
+      <div class="ring"></div>
+      <div class="ring"></div>
+      <div class="ring"></div>
+      <div class="orb"></div>
+    </div>
+    
+    <h1>404 - Signal Lost</h1>
+    <p>We couldn't locate the page you're looking for. It may have been moved or removed from our network.</p>
+    
+    <div class="actions-container">
+      <button onclick="window.history.back()" class="btn-secondary" style="padding: 12px 32px; font-size: 1.125rem;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:8px;"><path d="m15 18-6-6 6-6"/></svg>
+        Back to Previous Page
+      </button>
+      <a href="index.html" class="btn-primary" style="padding: 12px 32px; font-size: 1.125rem;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:8px;"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        Back to Home
+      </a>
+    </div>
+  </main>
+  
+  <script src="main.js"></script>
+</body>
+</html>

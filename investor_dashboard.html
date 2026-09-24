@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Investor Dashboard - Apex Brokerage</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    .dashboard-layout {
+      display: flex;
+      min-height: 100vh;
+      background-color: var(--bg-color, #09090b);
+    }
+    .sidebar {
+      width: 280px;
+      background: var(--card-bg, rgba(255, 255, 255, 0.05));
+      border-right: 1px solid var(--border-color, rgba(255, 255, 255, 0.1));
+      display: flex;
+      flex-direction: column;
+      padding: 24px;
+    }
+    .sidebar .nav-brand { margin-bottom: 48px; }
+    .sidebar-menu { display: flex; flex-direction: column; gap: 8px; list-style: none; padding: 0; margin: 0; }
+    .sidebar-menu a {
+      display: flex; align-items: center; gap: 12px; padding: 12px 16px; 
+      border-radius: 8px; color: var(--text-secondary, rgba(255, 255, 255, 0.6)); transition: all 0.2s;
+      text-decoration: none; font-size: 0.875rem; font-weight: 500;
+    }
+    .sidebar-menu a:hover, .sidebar-menu a.active {
+      background: rgba(99,102,241,0.15); color: var(--accent-color, #6366f1); font-weight: 600;
+    }
+    .dashboard-main {
+      flex: 1; padding: 32px 48px; display: flex; flex-direction: column; gap: 32px; overflow-y: auto; height: 100vh;
+    }
+    .content-section { display: none; animation: fadeIn 0.3s ease; }
+    .content-section.active { display: flex; flex-direction: column; gap: 32px; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .stat-card-dash {
+      background: var(--card-bg, rgba(255, 255, 255, 0.05)); border: 1px solid var(--border-color, rgba(255, 255, 255, 0.1));
+      border-radius: 12px; padding: 24px; display: flex; flex-direction: column; gap: 8px; flex: 1; min-width: 220px;
+    }
+    .stat-card-dash h3 { font-size: 0.875rem; color: var(--text-secondary, rgba(255, 255, 255, 0.6)); font-weight: 500; margin: 0; }
+    .stat-card-dash .value { font-size: 2rem; font-weight: 700; color: var(--text-primary, #ffffff); margin: 0; }
+    .stat-card-dash .badge {
+      display: inline-flex; align-items: center; padding: 4px 8px; border-radius: 4px;
+      font-size: 0.75rem; font-weight: 600; background: rgba(74,222,128,0.1); color: #4ade80; width: fit-content;
+    }
+    .dashboard-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .table-container {
+      background: var(--card-bg, rgba(255, 255, 255, 0.05)); border: 1px solid var(--border-color, rgba(255, 255, 255, 0.1)); border-radius: 12px; overflow-x: auto;
+    }
+    .table-container table { width: 100%; border-collapse: collapse; text-align: left; min-width: 650px; }
+    .table-container th { padding: 16px 24px; border-bottom: 1px solid var(--border-color, rgba(255, 255, 255, 0.1)); color: var(--text-secondary, rgba(255, 255, 255, 0.6)); font-size: 0.875rem; font-weight: 500; }
+    .table-container td { padding: 16px 24px; border-bottom: 1px solid var(--border-color, rgba(255, 255, 255, 0.1)); color: var(--text-primary, #ffffff); font-size: 0.875rem; }
+    .table-container tr:last-child td { border-bottom: none; }
+    
+    .card-box {
+      background: var(--card-bg, rgba(255, 255, 255, 0.05));
+      border: 1px solid var(--border-color, rgba(255, 255, 255, 0.1));
+      border-radius: 12px; padding: 24px;
+    }
+
+    .doc-filter-btn {
+      padding: 8px 16px; border-radius: 6px; font-size: 0.875rem; font-weight: 500;
+      background: transparent; color: var(--text-secondary); border: 1px solid var(--border-color);
+      cursor: pointer; transition: all 0.2s;
+    }
+    .doc-filter-btn.active, .doc-filter-btn:hover {
+      background: var(--accent-color); color: white; border-color: var(--accent-color);
+    }
+
+    .setting-group {
+      display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px;
+    }
+    .setting-group label {
+      font-size: 0.875rem; font-weight: 500; color: var(--text-secondary);
+    }
+    .setting-input {
+      padding: 12px 16px; background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border-color);
+      border-radius: 8px; color: white; font-size: 0.9375rem; outline: none; transition: border-color 0.2s;
+    }
+    .setting-input:focus { border-color: var(--accent-color); }
+
+    .toggle-switch {
+      position: relative; display: inline-block; width: 44px; height: 24px;
+    }
+    .toggle-switch input { opacity: 0; width: 0; height: 0; }
+    .slider {
+      position: absolute; cursor: pointer; inset: 0; background-color: rgba(255,255,255,0.2);
+      transition: .3s; border-radius: 24px;
+    }
+    .slider:before {
+      position: absolute; content: ""; height: 18px; width: 18px; left: 3px; bottom: 3px;
+      background-color: white; transition: .3s; border-radius: 50%;
+    }
+    input:checked + .slider { background-color: var(--accent-color); }
+    input:checked + .slider:before { transform: translateX(20px); }
+
+    @media (max-width: 1024px) {
+      .dashboard-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 768px) {
+      .dashboard-layout { flex-direction: column; }
+      .sidebar { width: 100%; height: auto; border-right: none; border-bottom: 1px solid var(--border-color); padding: 16px 24px; }
+      .dashboard-main { padding: 24px 16px; height: auto; }
+      .dashboard-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="dashboard-layout">
+    <aside class="sidebar">
+      <a href="index.html" class="nav-brand" style="margin-bottom: 32px; display: inline-flex; align-items: center;">
+        <img src="logo_0081.webp" alt="Apex Brokerage Logo" style="height:32px;">
+      </a>
+      <ul class="sidebar-menu" id="investorSidebar">
+        <li><a href="#" class="nav-btn active" data-target="dashboard"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg> Dashboard</a></li>
+        <li><a href="#" class="nav-btn" data-target="portfolio"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg> Portfolio</a></li>
+        <li><a href="#" class="nav-btn" data-target="document-center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg> Document Center</a></li>
+        <li><a href="#" class="nav-btn" data-target="settings"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg> Settings</a></li>
+      </ul>
+      <div style="margin-top:auto; padding-top: 24px;">
+        <a href="login.html" class="btn-secondary" style="width:100%; justify-content:center; padding:12px; font-size:1rem; border-radius: 8px; text-decoration: none; text-align: center; border: 1px solid var(--border-color); color: white; background: rgba(255,255,255,0.05); display: block;">Logout</a>
+      </div>
+    </aside>
+
+    <main class="dashboard-main">
+      
+      <!-- 1. DASHBOARD TAB -->
+      <div id="dashboard" class="content-section active">
+        <header style="display:flex; justify-content:space-between; align-items:center; flex-wrap: wrap; gap: 16px;">
+          <div>
+            <h1 style="font-size:2rem; margin-bottom:4px; font-weight: 700;">Welcome back, Investor</h1>
+            <p style="color:var(--text-secondary); margin:0;">Here's your real-time portfolio summary today.</p>
+          </div>
+          <div style="display:flex; gap:12px; align-items:center;">
+            <button class="btn-primary action-btn" data-msg="Deposit window initiated" style="padding:10px 20px; font-size:0.875rem; border-radius:8px; cursor: pointer;">Deposit Funds</button>
+            <button class="btn-secondary action-btn" data-msg="Quick Trade ticket ready" style="padding:10px 20px; font-size:0.875rem; border-radius:8px; cursor: pointer; color: white;">+ New Trade</button>
+          </div>
+        </header>
+
+        <div class="dashboard-grid">
+          <div class="stat-card-dash">
+            <h3>Total Net Worth</h3>
+            <span class="value">$124,500.00</span>
+            <span class="badge">+2.4% this week</span>
+          </div>
+          <div class="stat-card-dash">
+            <h3>Available Cash</h3>
+            <span class="value">$12,350.00</span>
+            <span class="badge" style="background:rgba(255,255,255,0.1); color:white;">Ready to invest</span>
+          </div>
+          <div class="stat-card-dash">
+            <h3>Today's Return</h3>
+            <span class="value" style="color:#4ade80;">+$1,450.00</span>
+            <span class="badge">+1.18% today</span>
+          </div>
+        </div>
+
+        <div>
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+            <h2 style="font-size:1.35rem; font-weight: 600; margin:0;">Top Holdings Summary</h2>
+            <a href="#" class="nav-btn" data-target="portfolio" style="color:var(--accent-color); font-size:0.875rem; text-decoration:none; font-weight:500;">View All Positions →</a>
+          </div>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>ASSET</th>
+                  <th>SHARES</th>
+                  <th>AVG COST</th>
+                  <th>CURRENT PRICE</th>
+                  <th>TOTAL VALUE</th>
+                  <th>24H CHANGE</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="font-weight:600;"><div style="display:flex; align-items:center; gap:12px;"><div style="width:32px; height:32px; border-radius:50%; background:#f8fafc; display:flex; align-items:center; justify-content:center; color:#0f172a; font-weight:bold; font-size:12px;">APL</div> AAPL (Apple Inc.)</div></td>
+                  <td>150</td>
+                  <td>$155.00</td>
+                  <td>$178.25</td>
+                  <td>$26,737.50</td>
+                  <td style="color:#4ade80;">+1.2%</td>
+                </tr>
+                <tr>
+                  <td style="font-weight:600;"><div style="display:flex; align-items:center; gap:12px;"><div style="width:32px; height:32px; border-radius:50%; background:#ef4444; display:flex; align-items:center; justify-content:center; color:#ffffff; font-weight:bold; font-size:12px;">TSL</div> TSLA (Tesla Inc.)</div></td>
+                  <td>40</td>
+                  <td>$250.00</td>
+                  <td>$245.10</td>
+                  <td>$9,804.00</td>
+                  <td style="color:#f87171;">-0.8%</td>
+                </tr>
+                <tr>
+                  <td style="font-weight:600;"><div style="display:flex; align-items:center; gap:12px;"><div style="width:32px; height:32px; border-radius:50%; background:#2563eb; display:flex; align-items:center; justify-content:center; color:#ffffff; font-weight:bold; font-size:12px;">VOO</div> VOO (S&P 500 ETF)</div></td>
+                  <td>120</td>
+                  <td>$390.00</td>
+                  <td>$410.50</td>
+                  <td>$49,260.00</td>
+                  <td style="color:#4ade80;">+0.5%</td>
+                </tr>
+                <tr>
+                  <td style="font-weight:600;"><div style="display:flex; align-items:center; gap:12px;"><div style="width:32px; height:32px; border-radius:50%; background:#7c3aed; display:flex; align-items:center; justify-content:center; color:#ffffff; font-weight:bold; font-size:12px;">NVD</div> NVDA (NVIDIA Corp)</div></td>
+                  <td>25</td>
+                  <td>$110.00</td>
+                  <td>$128.40</td>
+                  <td>$3,210.00</td>
+                  <td style="color:#4ade80;">+3.4%</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. PORTFOLIO TAB -->
+      <div id="portfolio" class="content-section">
+        <header style="display:flex; justify-content:space-between; align-items:center; flex-wrap: wrap; gap: 16px;">
+          <div>
+            <h1 style="font-size:2rem; margin-bottom:4px; font-weight: 700;">Portfolio Overview</h1>
+            <p style="color:var(--text-secondary); margin:0;">Detailed asset breakdown, allocation, and profit metrics.</p>
+          </div>
+          <div style="display:flex; gap:12px; align-items:center;">
+            <button class="btn-primary action-btn" data-msg="Portfolio rebalance initiated" style="padding:10px 20px; font-size:0.875rem; border-radius:8px; cursor: pointer;">Rebalance Portfolio</button>
+            <button class="btn-secondary action-btn" data-msg="Portfolio exported as CSV" style="padding:10px 20px; font-size:0.875rem; border-radius:8px; cursor: pointer; color: white;">Export CSV</button>
+          </div>
+        </header>
+
+        <!-- Allocation Progress Card -->
+        <div class="card-box">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+            <h3 style="font-size:1.1rem; font-weight:600; margin:0;">Asset Allocation Breakdown</h3>
+            <span style="font-size:0.875rem; color:var(--text-secondary);">Total Value: $124,500.00</span>
+          </div>
+          <div style="width:100%; height:12px; background:rgba(255,255,255,0.08); border-radius:999px; overflow:hidden; display:flex; margin-bottom:20px;">
+            <div style="width:48%; background:#4ade80;" title="Equities (48%)"></div>
+            <div style="width:39%; background:#6366f1;" title="ETFs (39%)"></div>
+            <div style="width:10%; background:#60a5fa;" title="Cash (10%)"></div>
+            <div style="width:3%; background:#f59e0b;" title="Crypto & Alts (3%)"></div>
+          </div>
+          <div style="display:flex; gap:24px; flex-wrap:wrap; font-size:0.875rem;">
+            <div style="display:flex; align-items:center; gap:8px;"><span style="width:10px; height:10px; border-radius:50%; background:#4ade80;"></span> <strong>Equities:</strong> 48% ($59,760.00)</div>
+            <div style="display:flex; align-items:center; gap:8px;"><span style="width:10px; height:10px; border-radius:50%; background:#6366f1;"></span> <strong>ETFs:</strong> 39% ($48,555.00)</div>
+            <div style="display:flex; align-items:center; gap:8px;"><span style="width:10px; height:10px; border-radius:50%; background:#60a5fa;"></span> <strong>Cash Balance:</strong> 10% ($12,350.00)</div>
+            <div style="display:flex; align-items:center; gap:8px;"><span style="width:10px; height:10px; border-radius:50%; background:#f59e0b;"></span> <strong>Crypto & Alts:</strong> 3% ($3,835.00)</div>
+          </div>
+        </div>
+
+        <div>
+          <h2 style="font-size:1.35rem; font-weight: 600; margin-bottom:16px;">All Open Positions</h2>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>ASSET</th>
+                  <th>SHARES</th>
+                  <th>AVG COST</th>
+                  <th>MARKET PRICE</th>
+                  <th>MARKET VALUE</th>
+                  <th>UNREALIZED P&L</th>
+                  <th>ACTION</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="font-weight:600;"><div style="display:flex; align-items:center; gap:12px;"><div style="width:32px; height:32px; border-radius:50%; background:#f8fafc; display:flex; align-items:center; justify-content:center; color:#0f172a; font-weight:bold; font-size:12px;">APL</div> AAPL</div></td>
+                  <td>150</td>
+                  <td>$155.00</td>
+                  <td>$178.25</td>
+                  <td>$26,737.50</td>
+                  <td style="color:#4ade80;">+$3,487.50 (+15.0%)</td>
+                  <td><button class="action-btn" data-msg="Trade order window opened for AAPL" style="background:rgba(99,102,241,0.2); color:#818cf8; border:1px solid rgba(99,102,241,0.4); padding:4px 12px; border-radius:6px; font-size:0.75rem; cursor:pointer;">Trade</button></td>
+                </tr>
+                <tr>
+                  <td style="font-weight:600;"><div style="display:flex; align-items:center; gap:12px;"><div style="width:32px; height:32px; border-radius:50%; background:#ef4444; display:flex; align-items:center; justify-content:center; color:#ffffff; font-weight:bold; font-size:12px;">TSL</div> TSLA</div></td>
+                  <td>40</td>
+                  <td>$250.00</td>
+                  <td>$245.10</td>
+                  <td>$9,804.00</td>
+                  <td style="color:#f87171;">-$196.00 (-1.96%)</td>
+                  <td><button class="action-btn" data-msg="Trade order window opened for TSLA" style="background:rgba(99,102,241,0.2); color:#818cf8; border:1px solid rgba(99,102,241,0.4); padding:4px 12px; border-radius:6px; font-size:0.75rem; cursor:pointer;">Trade</button></td>
+                </tr>
+                <tr>
+                  <td style="font-weight:600;"><div style="display:flex; align-items:center; gap:12px;"><div style="width:32px; height:32px; border-radius:50%; background:#2563eb; display:flex; align-items:center; justify-content:center; color:#ffffff; font-weight:bold; font-size:12px;">VOO</div> VOO</div></td>
+                  <td>120</td>
+                  <td>$390.00</td>
+                  <td>$410.50</td>
+                  <td>$49,260.00</td>
+                  <td style="color:#4ade80;">+$2,460.00 (+5.25%)</td>
+                  <td><button class="action-btn" data-msg="Trade order window opened for VOO" style="background:rgba(99,102,241,0.2); color:#818cf8; border:1px solid rgba(99,102,241,0.4); padding:4px 12px; border-radius:6px; font-size:0.75rem; cursor:pointer;">Trade</button></td>
+                </tr>
+                <tr>
+                  <td style="font-weight:600;"><div style="display:flex; align-items:center; gap:12px;"><div style="width:32px; height:32px; border-radius:50%; background:#7c3aed; display:flex; align-items:center; justify-content:center; color:#ffffff; font-weight:bold; font-size:12px;">NVD</div> NVDA</div></td>
+                  <td>25</td>
+                  <td>$110.00</td>
+                  <td>$128.40</td>
+                  <td>$3,210.00</td>
+                  <td style="color:#4ade80;">+$460.00 (+16.7%)</td>
+                  <td><button class="action-btn" data-msg="Trade order window opened for NVDA" style="background:rgba(99,102,241,0.2); color:#818cf8; border:1px solid rgba(99,102,241,0.4); padding:4px 12px; border-radius:6px; font-size:0.75rem; cursor:pointer;">Trade</button></td>
+                </tr>
+                <tr>
+                  <td style="font-weight:600;"><div style="display:flex; align-items:center; gap:12px;"><div style="width:32px; height:32px; border-radius:50%; background:#0284c7; display:flex; align-items:center; justify-content:center; color:#ffffff; font-weight:bold; font-size:12px;">MSF</div> MSFT</div></td>
+                  <td>60</td>
+                  <td>$380.00</td>
+                  <td>$425.00</td>
+                  <td>$25,500.00</td>
+                  <td style="color:#4ade80;">+$2,700.00 (+11.8%)</td>
+                  <td><button class="action-btn" data-msg="Trade order window opened for MSFT" style="background:rgba(99,102,241,0.2); color:#818cf8; border:1px solid rgba(99,102,241,0.4); padding:4px 12px; border-radius:6px; font-size:0.75rem; cursor:pointer;">Trade</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. DOCUMENT CENTER TAB -->
+      <div id="document-center" class="content-section">
+        <header style="display:flex; justify-content:space-between; align-items:center; flex-wrap: wrap; gap: 16px;">
+          <div>
+            <h1 style="font-size:2rem; margin-bottom:4px; font-weight: 700;">Document Center & Statements</h1>
+            <p style="color:var(--text-secondary); margin:0;">Access tax forms, monthly statements, and official trade receipts.</p>
+          </div>
+          <div>
+            <button class="btn-primary action-btn" data-msg="Downloading all tax documents bundle" style="padding:10px 20px; font-size:0.875rem; border-radius:8px; cursor: pointer;">Download All (Zip)</button>
+          </div>
+        </header>
+
+        <!-- Document Filters -->
+        <div style="display:flex; gap:12px; flex-wrap:wrap;">
+          <button class="doc-filter-btn active" data-filter="all">All Documents (6)</button>
+          <button class="doc-filter-btn" data-filter="tax">Tax Forms (2)</button>
+          <button class="doc-filter-btn" data-filter="statements">Account Statements (3)</button>
+          <button class="doc-filter-btn" data-filter="trades">Trade Confirmations (1)</button>
+        </div>
+
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>DOCUMENT NAME</th>
+                <th>CATEGORY</th>
+                <th>PERIOD / DATE</th>
+                <th>FILE SIZE</th>
+                <th>STATUS</th>
+                <th>ACTION</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr data-cat="tax">
+                <td style="font-weight:600;"><div style="display:flex; align-items:center; gap:12px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg> 2025 Form 1099-B Consolidated Tax Statement</div></td>
+                <td><span style="background:rgba(99,102,241,0.15); color:#818cf8; padding:2px 8px; border-radius:4px; font-size:0.75rem;">Tax Form</span></td>
+                <td>Jan 31, 2026</td>
+                <td>1.4 MB</td>
+                <td><span style="color:#4ade80;">Ready</span></td>
+                <td><button class="action-btn" data-msg="Downloading 2025 Form 1099-B..." style="background:transparent; border:none; color:var(--accent-color); font-weight:600; cursor:pointer;">Download PDF</button></td>
+              </tr>
+              <tr data-cat="statements">
+                <td style="font-weight:600;"><div style="display:flex; align-items:center; gap:12px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg> Q4 2025 Quarterly Account Performance Report</div></td>
+                <td><span style="background:rgba(96,165,250,0.15); color:#60a5fa; padding:2px 8px; border-radius:4px; font-size:0.75rem;">Quarterly</span></td>
+                <td>Jan 15, 2026</td>
+                <td>2.8 MB</td>
+                <td><span style="color:#4ade80;">Ready</span></td>
+                <td><button class="action-btn" data-msg="Downloading Q4 2025 Report..." style="background:transparent; border:none; color:var(--accent-color); font-weight:600; cursor:pointer;">Download PDF</button></td>
+              </tr>
+              <tr data-cat="statements">
+                <td style="font-weight:600;"><div style="display:flex; align-items:center; gap:12px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg> February 2026 Monthly Statement</div></td>
+                <td><span style="background:rgba(96,165,250,0.15); color:#60a5fa; padding:2px 8px; border-radius:4px; font-size:0.75rem;">Monthly Statement</span></td>
+                <td>Mar 01, 2026</td>
+                <td>850 KB</td>
+                <td><span style="color:#4ade80;">Ready</span></td>
+                <td><button class="action-btn" data-msg="Downloading Feb 2026 Statement..." style="background:transparent; border:none; color:var(--accent-color); font-weight:600; cursor:pointer;">Download PDF</button></td>
+              </tr>
+              <tr data-cat="statements">
+                <td style="font-weight:600;"><div style="display:flex; align-items:center; gap:12px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg> January 2026 Monthly Statement</div></td>
+                <td><span style="background:rgba(96,165,250,0.15); color:#60a5fa; padding:2px 8px; border-radius:4px; font-size:0.75rem;">Monthly Statement</span></td>
+                <td>Feb 01, 2026</td>
+                <td>820 KB</td>
+                <td><span style="color:#4ade80;">Ready</span></td>
+                <td><button class="action-btn" data-msg="Downloading Jan 2026 Statement..." style="background:transparent; border:none; color:var(--accent-color); font-weight:600; cursor:pointer;">Download PDF</button></td>
+              </tr>
+              <tr data-cat="trades">
+                <td style="font-weight:600;"><div style="display:flex; align-items:center; gap:12px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg> Trade Confirmation Receipt #TX-998230</div></td>
+                <td><span style="background:rgba(167,139,250,0.15); color:#a78bfa; padding:2px 8px; border-radius:4px; font-size:0.75rem;">Trade Receipt</span></td>
+                <td>Sep 24, 2026</td>
+                <td>240 KB</td>
+                <td><span style="color:#4ade80;">Ready</span></td>
+                <td><button class="action-btn" data-msg="Downloading Trade Receipt..." style="background:transparent; border:none; color:var(--accent-color); font-weight:600; cursor:pointer;">Download PDF</button></td>
+              </tr>
+              <tr data-cat="tax">
+                <td style="font-weight:600;"><div style="display:flex; align-items:center; gap:12px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg> Form W-9 Verification Copy</div></td>
+                <td><span style="background:rgba(99,102,241,0.15); color:#818cf8; padding:2px 8px; border-radius:4px; font-size:0.75rem;">Tax Form</span></td>
+                <td>Nov 12, 2025</td>
+                <td>450 KB</td>
+                <td><span style="color:#4ade80;">Verified</span></td>
+                <td><button class="action-btn" data-msg="Opening Form W-9 Copy..." style="background:transparent; border:none; color:var(--accent-color); font-weight:600; cursor:pointer;">View Copy</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- 4. SETTINGS TAB -->
+      <div id="settings" class="content-section">
+        <header style="display:flex; justify-content:space-between; align-items:center; flex-wrap: wrap; gap: 16px;">
+          <div>
+            <h1 style="font-size:2rem; margin-bottom:4px; font-weight: 700;">Account & Security Settings</h1>
+            <p style="color:var(--text-secondary); margin:0;">Manage your profile, authentication preferences, and connected bank accounts.</p>
+          </div>
+          <div>
+            <button class="btn-primary action-btn" data-msg="Settings changes saved successfully" style="padding:10px 20px; font-size:0.875rem; border-radius:8px; cursor: pointer;">Save All Changes</button>
+          </div>
+        </header>
+
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:24px;">
+          <!-- Profile Card -->
+          <div class="card-box">
+            <h3 style="font-size:1.1rem; font-weight:600; margin-top:0; margin-bottom:20px;">Personal Profile</h3>
+            <div class="setting-group">
+              <label>Full Legal Name</label>
+              <input type="text" class="setting-input" value="John Doe">
+            </div>
+            <div class="setting-group">
+              <label>Email Address</label>
+              <input type="email" class="setting-input" value="johndoe@example.com">
+            </div>
+            <div class="setting-group">
+              <label>Phone Number</label>
+              <input type="text" class="setting-input" value="+1 (555) 234-5678">
+            </div>
+            <div class="setting-group">
+              <label>Residential Address</label>
+              <input type="text" class="setting-input" value="742 Evergreen Terrace, Springfield, IL">
+            </div>
+          </div>
+
+          <!-- Security & 2FA Card -->
+          <div class="card-box">
+            <h3 style="font-size:1.1rem; font-weight:600; margin-top:0; margin-bottom:20px;">Security & Password</h3>
+            <div style="display:flex; justify-content:space-between; align-items:center; padding:12px 0; border-bottom:1px solid var(--border-color);">
+              <div>
+                <div style="font-weight:600; font-size:0.9375rem;">Two-Factor Authentication (2FA)</div>
+                <div style="font-size:0.8125rem; color:var(--text-secondary);">Authenticator App (TOTP) Enabled</div>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" checked>
+                <span class="slider"></span>
+              </label>
+            </div>
+
+            <div style="display:flex; justify-content:space-between; align-items:center; padding:12px 0; border-bottom:1px solid var(--border-color);">
+              <div>
+                <div style="font-weight:600; font-size:0.9375rem;">Login Notifications</div>
+                <div style="font-size:0.8125rem; color:var(--text-secondary);">Receive email alerts for new device logins</div>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" checked>
+                <span class="slider"></span>
+              </label>
+            </div>
+
+            <div style="margin-top:20px;">
+              <button class="btn-secondary action-btn" data-msg="Password update link sent to your email" style="width:100%; padding:10px; font-size:0.875rem; border-radius:8px; cursor:pointer; color:white;">Update Password</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Connected Bank Accounts Card -->
+        <div class="card-box">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+            <h3 style="font-size:1.1rem; font-weight:600; margin:0;">Linked Bank Accounts & Funding</h3>
+            <button class="btn-primary action-btn" data-msg="ACH Plaid integration window opened" style="padding:8px 16px; font-size:0.8125rem; border-radius:6px; cursor:pointer;">+ Add Bank Account</button>
+          </div>
+          
+          <div style="display:flex; flex-direction:column; gap:12px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; padding:16px; background:rgba(255,255,255,0.03); border:1px solid var(--border-color); border-radius:8px;">
+              <div style="display:flex; align-items:center; gap:16px;">
+                <div style="width:40px; height:40px; border-radius:8px; background:rgba(99,102,241,0.15); display:flex; align-items:center; justify-content:center; color:#818cf8; font-weight:bold;">ACH</div>
+                <div>
+                  <div style="font-weight:600;">Chase Checking (****4821)</div>
+                  <div style="font-size:0.8125rem; color:var(--text-secondary);">Primary ACH Funding Account • Verified</div>
+                </div>
+              </div>
+              <span style="color:#4ade80; font-size:0.8125rem; font-weight:600;">Default</span>
+            </div>
+
+            <div style="display:flex; justify-content:space-between; align-items:center; padding:16px; background:rgba(255,255,255,0.03); border:1px solid var(--border-color); border-radius:8px;">
+              <div style="display:flex; align-items:center; gap:16px;">
+                <div style="width:40px; height:40px; border-radius:8px; background:rgba(96,165,250,0.15); display:flex; align-items:center; justify-content:center; color:#60a5fa; font-weight:bold;">WIRE</div>
+                <div>
+                  <div style="font-weight:600;">Bank of America (****9012)</div>
+                  <div style="font-size:0.8125rem; color:var(--text-secondary);">Wire Transfer Account • Verified</div>
+                </div>
+              </div>
+              <button class="action-btn" data-msg="Bank account set as default" style="background:transparent; border:none; color:var(--accent-color); font-size:0.8125rem; font-weight:600; cursor:pointer;">Make Default</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- Interactive Feedback Toast -->
+  <div id="toast" style="position:fixed; bottom:24px; right:24px; background:#6366f1; color:white; padding:12px 24px; border-radius:8px; font-weight:500; font-size:0.875rem; box-shadow:0 10px 25px rgba(0,0,0,0.5); opacity:0; transform:translateY(20px); transition:all 0.3s ease; pointer-events:none; z-index:1000;">
+    Action completed
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Sidebar Navigation Tab Switching
+      const navButtons = document.querySelectorAll('#investorSidebar .nav-btn, .nav-btn[data-target]');
+      const contentSections = document.querySelectorAll('.content-section');
+
+      function switchTab(targetId) {
+        navButtons.forEach(b => {
+          if (b.getAttribute('data-target') === targetId) {
+            b.classList.add('active');
+          } else if (b.closest('#investorSidebar')) {
+            b.classList.remove('active');
+          }
+        });
+
+        contentSections.forEach(sec => sec.classList.remove('active'));
+        const targetSection = document.getElementById(targetId);
+        if (targetSection) {
+          targetSection.classList.add('active');
+        }
+      }
+
+      navButtons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          const targetId = btn.getAttribute('data-target');
+          if (targetId) {
+            switchTab(targetId);
+          }
+        });
+      });
+
+      // Document Center Category Filters
+      const docFilterBtns = document.querySelectorAll('.doc-filter-btn');
+      const docRows = document.querySelectorAll('#document-center tbody tr');
+
+      docFilterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          docFilterBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+
+          const filter = btn.getAttribute('data-filter');
+          docRows.forEach(row => {
+            if (filter === 'all' || row.getAttribute('data-cat') === filter) {
+              row.style.display = '';
+            } else {
+              row.style.display = 'none';
+            }
+          });
+        });
+      });
+
+      // Toast Feedback Notice
+      const toast = document.getElementById('toast');
+      document.querySelectorAll('.action-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const msg = btn.getAttribute('data-msg') || 'Action completed successfully';
+          toast.textContent = '✓ ' + msg;
+          toast.style.opacity = '1';
+          toast.style.transform = 'translateY(0)';
+          setTimeout(() => {
+            toast.style.opacity = '0';
+            toast.style.transform = 'translateY(20px)';
+          }, 3000);
+        });
+      });
+    });
+  </script>
+</body>
+</html>

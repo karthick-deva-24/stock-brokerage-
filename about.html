@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us - Apex Brokerage</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <nav class="navbar">
+    <a href="index.html" class="nav-brand">
+      <img src="logo_0081.webp" alt="Apex Brokerage Logo">
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="services.html">Services</a>
+      <a href="blog.html">Blog</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="nav-actions">
+      <a href="login.html" class="btn-primary">Login</a>
+    </div>
+    <button id="mobile-menu-btn" class="mobile-menu-btn">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+    </button>
+  </nav>
+
+  <div id="mobile-nav" class="mobile-nav">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="services.html">Services</a>
+    <a href="blog.html">Blog</a>
+    <a href="contact.html">Contact</a>
+    <hr>
+    <a href="login.html">Log in</a>
+  </div>
+
+  <main class="main-container">
+    
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-bg"></div>
+      <canvas id="sonar-canvas" class="sonar-canvas"></canvas>
+      
+      <div class="hero-carousel-container">
+        <div class="hero-carousel-track">
+          
+          <div class="hero-slide active">
+            <div class="eyebrow">
+              <span class="eyebrow-dot"></span>
+              Powering Smarter Market Participation
+            </div>
+            <h1 class="text-balance">About Apex Brokerage</h1>
+            <p class="text-pretty">We are a modern stock brokerage built to redefine the future of trading. By combining institutional-grade technology with an intuitive, seamless user experience, our mission is to empower traders of all levels to navigate the markets with confidence.</p>
+            <div class="hero-actions">
+              <a href="login.html" class="btn-primary">Explore Our Platform</a>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </section>
+
+    <!-- Who We Are & Mission / Vision -->
+    <section class="section-padding bg-black">
+      <div class="container">
+        <div class="text-center mb-8">
+          <h2 class="section-title">Who We Are — Built Around Modern Investing</h2>
+          <p class="section-subtitle mx-auto" style="max-width:700px;">We are a forward-thinking brokerage driven by innovation, designed to make investing simpler, smarter, and more rewarding.</p>
+        </div>
+        <div class="grid grid-cols-2" style="gap:32px;">
+          <div class="card">
+            <h3 class="mb-4">Our Mission — Making Markets More Accessible</h3>
+            <p>Our goal is to simplify investing by breaking down traditional barriers. We believe that everyone should have access to the tools, knowledge, and platforms needed to make informed financial decisions and build long-term wealth.</p>
+          </div>
+          <div class="card">
+            <h3 class="mb-4">Our Vision — Shaping the Future of Investing</h3>
+            <p>We envision a world where technology-driven financial services create the most transparent, efficient, and accessible markets. We are building for the long-term, anticipating the future needs of our clients.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why Choose Us & Platform -->
+    <section class="section-padding bg-dark">
+      <div class="container">
+        <div class="text-center mb-8">
+          <h2 class="section-title">Why Choose Us — More Than Just a Brokerage</h2>
+          <p class="section-subtitle mx-auto" style="max-width:700px;">Experience technology that keeps you connected and opens up opportunities across global markets.</p>
+        </div>
+        
+        <div class="grid grid-cols-3 mt-8">
+          <div class="card">
+            <svg class="card-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+            <h3>Reliable Platform</h3>
+            <p>Built on modern architecture, our platform ensures ultra-low latency and unparalleled reliability, even during peak market volatility.</p>
+          </div>
+          <div class="card">
+            <svg class="card-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+            <h3>Competitive Pricing</h3>
+            <p>We offer transparent, highly competitive pricing so you keep more of your returns, with no hidden fees or unexpected costs.</p>
+          </div>
+          <div class="card">
+            <svg class="card-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>
+            <h3>Advanced Tools</h3>
+            <p>Access sophisticated research, real-time market data, and powerful analytics tools to monitor your portfolio and discover new opportunities.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Market Access & Numbers -->
+    <section class="section-padding bg-black">
+      <div class="container">
+        <h2 class="section-title">Market Access — Opportunities Across Markets</h2>
+        <p class="section-subtitle mx-auto" style="max-width:700px;">Trade equities, ETFs, mutual funds, and other alternative investment products from a single, unified account.</p>
+
+        <div class="grid grid-cols-4 mt-8 mb-8" style="gap:24px;">
+          <div class="stat-card">
+            <div class="stat-value">5M+</div>
+            <div class="stat-label">Active Users</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value">500M+</div>
+            <div class="stat-label">Trades Executed</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value">$10B+</div>
+            <div class="stat-label">Assets Supported</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value">15+</div>
+            <div class="stat-label">Years Experience</div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Our Journey -->
+    <section class="section-padding bg-dark">
+      <div class="container text-center">
+        <h2 class="section-title">Our Journey — From Vision to Market Platform</h2>
+        <p class="section-subtitle mx-auto" style="max-width:700px;">Tracing our company milestones, growth timeline, and technology evolution.</p>
+        
+        <div class="grid grid-cols-3 mt-8 text-left">
+          <div class="card">
+            <h3 class="mb-2">Company Milestones</h3>
+            <p class="text-secondary">Founded with the core belief that financial markets should be accessible to everyone, we started by breaking down traditional barriers to entry.</p>
+          </div>
+          <div class="card">
+            <h3 class="mb-2">Growth Timeline</h3>
+            <p class="text-secondary">Through pivotal milestones, our user base expanded globally as we introduced new asset classes, robust trading tools, and extensive global reach.</p>
+          </div>
+          <div class="card">
+            <h3 class="mb-2">Technology Evolution</h3>
+            <p class="text-secondary">Continuously innovating, we transitioned to our current ultra-low latency architecture to meet the demands of modern market volatility.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Commitment & Security -->
+    <section class="section-padding bg-black">
+      <div class="container">
+        <div class="grid grid-cols-2" style="gap:48px; align-items:center;">
+          <div>
+            <h2 class="section-title text-left">Our Commitment — Transparency at Every Step</h2>
+            <p class="mb-6 text-secondary">From clear pricing to straightforward processes, we believe in radical transparency. We communicate responsibly, ensuring you always know where your investments stand.</p>
+            <ul class="flex-col gap-4 mt-4" style="display:flex;">
+              <li class="list-item">
+                <svg class="list-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Clear, upfront pricing with no hidden fees</span>
+              </li>
+              <li class="list-item">
+                <svg class="list-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Straightforward account management processes</span>
+              </li>
+              <li class="list-item">
+                <svg class="list-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Honest, responsible communication always</span>
+              </li>
+            </ul>
+          </div>
+          <div class="card" style="border: 1px solid var(--accent-color);">
+            <h3 class="mb-4">Security & Trust — Protecting Your Financial Journey</h3>
+            <p class="mb-4 text-secondary">Your peace of mind is our priority. We employ industry-leading protocols to safeguard your assets.</p>
+            <div class="flex-col gap-4" style="display:flex;">
+              <div>
+                <h4 style="color:var(--text-primary); margin-bottom:4px;">Account Security & Data Protection</h4>
+                <p style="font-size:0.875rem; color:var(--text-secondary);">Advanced encryption and multi-factor authentication protect your personal data from end to end.</p>
+              </div>
+              <div>
+                <h4 style="color:var(--text-primary); margin-bottom:4px;">Secure Transactions & Compliance</h4>
+                <p style="font-size:0.875rem; color:var(--text-secondary);">Compliance-focused operations ensuring every transaction meets rigorous regulatory standards.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Built for every investor & support -->
+    <section class="section-padding bg-dark">
+      <div class="container">
+        <div class="text-center mb-8">
+          <h2 class="section-title">Built for Every Investor</h2>
+          <p class="section-subtitle mx-auto" style="max-width:700px;">From your first trade to every next move, our platform adapts to your needs with beginner-friendly tools, advanced market features, and a personalized experience.</p>
+        </div>
+        <div class="grid grid-cols-2" style="gap:32px;">
+          <div class="card text-center">
+            <svg class="card-icon mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>
+            <h3 class="mb-4">Investor Support — Guidance When You Need It</h3>
+            <p>Access extensive educational resources, comprehensive platform support, and dedicated customer assistance to guide your financial journey.</p>
+          </div>
+          <div class="card text-center">
+            <svg class="card-icon mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
+            <h3 class="mb-4">The People Behind the Platform</h3>
+            <p>Driven by market expertise, our leadership, financial specialists, and technology team work tirelessly to deliver exceptional value.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Closing CTA -->
+    <section class="cta-section">
+      <div class="container">
+        <h2 class="cta-title">Your Market Journey Starts Here</h2>
+        <p class="cta-subtitle">Open an account today to discover our services and explore a platform built for modern investing.</p>
+        <div class="flex justify-center gap-4">
+          <a href="login.html" class="btn-primary">Open an Account</a>
+          <a href="services.html" class="btn-secondary">Discover Our Services</a>
+        </div>
+      </div>
+    </section>
+
+    <footer class="premium-footer">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <a href="index.html" class="nav-brand" style="margin-bottom: 24px; display: inline-flex;">
+            <img src="logo_0081.webp" alt="Stackly Logo">
+          </a>
+          <p style="color: var(--text-secondary); font-size: 0.875rem; line-height: 1.6; max-width: 320px;">
+            The modern standard for intelligent market access. Institutional-grade execution architecture built for the focused investor.
+          </p>
+          <div class="footer-socials">
+            <a href="#" class="footer-social-link">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>
+            </a>
+            <a href="#" class="footer-social-link">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+            <a href="#" class="footer-social-link">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Platform</h4>
+          <ul class="footer-links">
+            <li><a href="services.html">Features</a></li>
+            <li><a href="services.html">Pricing</a></li>
+            <li><a href="#">Security</a></li>
+            <li><a href="#">API Access</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul class="footer-links">
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="#">Careers</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <ul class="footer-links">
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+            <li><a href="#">Cookie Policy</a></li>
+            <li><a href="#">Disclosures</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-copyright">
+          © 2026 Stackly Brokerage Ltd. All rights reserved.
+        </div>
+        <div style="display: flex; gap: 24px;">
+          <form style="display: flex; align-items: center; gap: 8px;">
+            <span style="font-size: 0.875rem; color: var(--text-primary); font-weight: 500;">Subscribe to Newsletter:</span>
+            <input type="email" placeholder="Enter email" style="background: var(--card-bg); border: 1px solid var(--border-color); color: white; padding: 6px 12px; border-radius: 4px; font-size: 0.875rem; outline: none;">
+            <button type="button" class="btn-primary" style="padding: 6px 16px; border-radius: 4px; font-size: 0.875rem;">Done</button>
+          </form>
+        </div>
+      </div>
+    </footer>
+  </main>
+  <script src="sonar.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
+

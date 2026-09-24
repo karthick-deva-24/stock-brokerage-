@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog - Apex Brokerage</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <nav class="navbar">
+    <a href="index.html" class="nav-brand">
+      <img src="logo_0081.webp" alt="Apex Brokerage Logo">
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="services.html">Services</a>
+      <a href="blog.html">Blog</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="nav-actions">
+      <a href="login.html" class="btn-primary">Login</a>
+    </div>
+    <button id="mobile-menu-btn" class="mobile-menu-btn">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+    </button>
+  </nav>
+
+  <div id="mobile-nav" class="mobile-nav">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="services.html">Services</a>
+    <a href="blog.html">Blog</a>
+    <a href="contact.html">Contact</a>
+    <hr>
+    <a href="login.html">Log in</a>
+  </div>
+
+  <main class="main-container">
+    
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-bg"></div>
+      <canvas id="sonar-canvas" class="sonar-canvas"></canvas>
+      
+      <div class="hero-carousel-container">
+        <div class="hero-carousel-track">
+          
+          <div class="hero-slide active">
+            <div class="eyebrow">
+              <span class="eyebrow-dot"></span>
+              Knowledge is Power
+            </div>
+            <h1 class="text-balance">Market Insights, Made Simple</h1>
+            <p class="text-pretty" style="max-width: 800px; margin: 0 auto 40px;">Latest market perspectives, investing concepts, and financial education.</p>
+          </div>
+          
+        </div>
+      </div>
+    </section>
+
+    <!-- Categories / Educational Grid -->
+    <section class="section-padding bg-black">
+      <div class="container">
+        <h2 class="section-title text-center mb-8">Investor Education Hub</h2>
+        <div class="grid grid-cols-3" style="gap:24px;">
+          <!-- Category 1 -->
+          <div class="card">
+            <h3 style="font-size:1.25rem; margin-bottom:8px; color:var(--accent-color);">Market Trends & Analysis</h3>
+            <p class="text-secondary" style="font-size:0.875rem;">Explore developments shaping equity and financial markets.</p>
+          </div>
+          <!-- Category 2 -->
+          <div class="card">
+            <h3 style="font-size:1.25rem; margin-bottom:8px; color:var(--accent-color);">Investing 101</h3>
+            <p class="text-secondary" style="font-size:0.875rem;">Beginner-friendly guides to stocks, ETFs, mutual funds, and portfolios.</p>
+          </div>
+          <!-- Category 3 -->
+          <div class="card">
+            <h3 style="font-size:1.25rem; margin-bottom:8px; color:var(--accent-color);">Trading Strategies</h3>
+            <p class="text-secondary" style="font-size:0.875rem;">Educational content covering different approaches to market participation.</p>
+          </div>
+          <!-- Category 4 -->
+          <div class="card">
+            <h3 style="font-size:1.25rem; margin-bottom:8px; color:var(--accent-color);">Understanding Market Volatility</h3>
+            <p class="text-secondary" style="font-size:0.875rem;">Learn about market movements, uncertainty, and risk.</p>
+          </div>
+          <!-- Category 5 -->
+          <div class="card">
+            <h3 style="font-size:1.25rem; margin-bottom:8px; color:var(--accent-color);">Technical Analysis Explained</h3>
+            <p class="text-secondary" style="font-size:0.875rem;">Understand charts, indicators, patterns, and market data.</p>
+          </div>
+          <!-- Category 6 -->
+          <div class="card">
+            <h3 style="font-size:1.25rem; margin-bottom:8px; color:var(--accent-color);">Fundamental Analysis</h3>
+            <p class="text-secondary" style="font-size:0.875rem;">Learn how financial statements, business performance, and valuation are analyzed.</p>
+          </div>
+          <!-- Category 7 -->
+          <div class="card">
+            <h3 style="font-size:1.25rem; margin-bottom:8px; color:var(--accent-color);">Brokerage & Trading Explained</h3>
+            <p class="text-secondary" style="font-size:0.875rem;">Understand orders, brokerage charges, settlement, and account features.</p>
+          </div>
+          <!-- Category 8 -->
+          <div class="card" style="grid-column: span 2;">
+            <h3 style="font-size:1.25rem; margin-bottom:8px; color:var(--accent-color);">Investor Education Hub Overview</h3>
+            <p class="text-secondary" style="font-size:0.875rem;">Practical guides designed to build financial and market knowledge across all disciplines.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Latest Articles -->
+    <section class="section-padding bg-dark border-t" style="border-top: 1px solid var(--border-color);">
+      <div class="container" style="max-width:800px;">
+        <h2 class="section-title text-center mb-8">Latest Market Perspectives</h2>
+        <p class="section-subtitle text-center mb-8">Timely articles covering relevant financial-market developments.</p>
+        
+        <div style="display:flex; flex-direction:column; gap:32px;">
+          <!-- Post 1 -->
+          <article style="border-bottom:1px solid var(--border-color); padding-bottom:32px; display:flex; justify-content:space-between; align-items:center; cursor:pointer;" onmouseover="this.querySelector('h3').style.color='var(--accent-color)'" onmouseout="this.querySelector('h3').style.color='var(--text-primary)'">
+            <div>
+              <div style="display:flex; gap:12px; font-size:0.875rem; margin-bottom:8px;">
+                <span style="color:var(--accent-color); font-weight:500;">Market Analysis</span>
+                <span style="color:var(--text-secondary);">•</span>
+                <span style="color:var(--text-secondary);">Today</span>
+              </div>
+              <h3 style="font-size:1.5rem; transition:color 0.2s;">Navigating the Current Market Volatility</h3>
+            </div>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </article>
+          <!-- Post 2 -->
+          <article style="border-bottom:1px solid var(--border-color); padding-bottom:32px; display:flex; justify-content:space-between; align-items:center; cursor:pointer;" onmouseover="this.querySelector('h3').style.color='var(--accent-color)'" onmouseout="this.querySelector('h3').style.color='var(--text-primary)'">
+            <div>
+              <div style="display:flex; gap:12px; font-size:0.875rem; margin-bottom:8px;">
+                <span style="color:var(--accent-color); font-weight:500;">Education</span>
+                <span style="color:var(--text-secondary);">•</span>
+                <span style="color:var(--text-secondary);">Yesterday</span>
+              </div>
+              <h3 style="font-size:1.5rem; transition:color 0.2s;">Understanding Options Greeks: A Deep Dive</h3>
+            </div>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </article>
+        </div>
+        
+        <div class="text-center" style="margin-top:48px;">
+          <button class="btn-secondary">Load More Articles</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Closing CTA -->
+    <section class="cta-section">
+      <div class="container">
+        <h2 class="cta-title text-balance">Stay Informed. Invest With Knowledge.</h2>
+        <div class="flex justify-center gap-4">
+          <a href="login.html" class="btn-primary" style="padding: 12px 32px; font-size: 1.125rem;">Open an Account</a>
+        </div>
+      </div>
+    </section>
+
+    <footer class="premium-footer">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <a href="index.html" class="nav-brand" style="margin-bottom: 24px; display: inline-flex;">
+            <img src="logo_0081.webp" alt="Stackly Logo">
+          </a>
+          <p style="color: var(--text-secondary); font-size: 0.875rem; line-height: 1.6; max-width: 320px;">
+            The modern standard for intelligent market access. Institutional-grade execution architecture built for the focused investor.
+          </p>
+          <div class="footer-socials">
+            <a href="#" class="footer-social-link">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>
+            </a>
+            <a href="#" class="footer-social-link">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+            <a href="#" class="footer-social-link">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Platform</h4>
+          <ul class="footer-links">
+            <li><a href="services.html">Features</a></li>
+            <li><a href="services.html">Pricing</a></li>
+            <li><a href="#">Security</a></li>
+            <li><a href="#">API Access</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul class="footer-links">
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="#">Careers</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <ul class="footer-links">
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+            <li><a href="#">Cookie Policy</a></li>
+            <li><a href="#">Disclosures</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-copyright">
+          © 2026 Stackly Brokerage Ltd. All rights reserved.
+        </div>
+        <div style="display: flex; gap: 24px;">
+          <form style="display: flex; align-items: center; gap: 8px;">
+            <span style="font-size: 0.875rem; color: var(--text-primary); font-weight: 500;">Subscribe to Newsletter:</span>
+            <input type="email" placeholder="Enter email" style="background: var(--card-bg); border: 1px solid var(--border-color); color: white; padding: 6px 12px; border-radius: 4px; font-size: 0.875rem; outline: none;">
+            <button type="button" class="btn-primary" style="padding: 6px 16px; border-radius: 4px; font-size: 0.875rem;">Done</button>
+          </form>
+        </div>
+      </div>
+    </footer>
+  </main>
+  <script src="sonar.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apex Brokerage - Signals, not noise</title>
+  <meta name="description" content="Cut through market volatility with Apex Brokerage.">
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="index.html" class="nav-brand">
+      <img src="logo_0081.webp" alt="Apex Brokerage Logo">
+    </a>
+    
+    <div class="nav-links">
+      <a href="index.html" class="active">Home</a>
+      <a href="about.html">About</a>
+      <a href="services.html">Services</a>
+      <a href="blog.html">Blog</a>
+      <a href="contact.html">Contact</a>
+    </div>
+
+    <div class="nav-actions">
+      <a href="login.html" class="btn-primary">Login</a>
+    </div>
+
+    <button id="mobile-menu-btn" class="mobile-menu-btn">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+    </button>
+  </nav>
+
+  <div id="mobile-nav" class="mobile-nav">
+    <a href="index.html" class="active">Home</a>
+    <a href="about.html">About</a>
+    <a href="services.html">Services</a>
+    <a href="blog.html">Blog</a>
+    <a href="contact.html">Contact</a>
+    <hr>
+    <a href="login.html">Log in</a>
+  </div>
+
+  <main class="main-container">
+    <!-- 1. Hero Section -->
+    <section class="hero">
+      <div class="hero-bg"></div>
+      <canvas id="sonar-canvas" class="sonar-canvas"></canvas>
+      
+      <div class="hero-carousel-container">
+        <div class="hero-carousel-track" id="hero-track">
+          
+          <!-- Slide 1 -->
+          <div class="hero-slide active">
+            <div class="eyebrow">
+              <span class="eyebrow-dot"></span>
+              Apex Brokerage is Live
+            </div>
+            <h1 class="text-balance">Signals, not noise.</h1>
+            <p class="text-pretty">Cut through market volatility. Every ping is a real-time market event. Tap anywhere to interact with the grid.</p>
+            <div class="hero-actions">
+              <a href="login.html" class="btn-primary">
+                Start Trading
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              </a>
+              <a href="#platform" class="btn-secondary">Explore Features</a>
+            </div>
+          </div>
+
+          <!-- Slide 2 -->
+          <div class="hero-slide">
+            <div class="eyebrow">
+              <span class="eyebrow-dot"></span>
+              Professional Grade
+            </div>
+            <h1 class="text-balance">Execution without compromise.</h1>
+            <p class="text-pretty">Institutional latency, retail access. Trade Equities, Options, and Futures on a singular, unified platform.</p>
+            <div class="hero-actions">
+              <a href="services.html" class="btn-primary">View Pricing</a>
+              <a href="login.html" class="btn-secondary">Login</a>
+            </div>
+          </div>
+
+          <!-- Slide 3 -->
+          <div class="hero-slide">
+            <div class="eyebrow">
+              <span class="eyebrow-dot"></span>
+              Deep Intelligence
+            </div>
+            <h1 class="text-balance">See the market clearly.</h1>
+            <p class="text-pretty">Leverage advanced AI-driven sentiment analysis and 100+ technical indicators right out of the box.</p>
+            <div class="hero-actions">
+              <a href="#platform" class="btn-primary">Discover Tools</a>
+            </div>
+          </div>
+
+        </div>
+        
+        <div class="hero-carousel-dots" id="hero-dots"></div>
+      </div>
+    </section>
+
+    <!-- 2. Market Overview -->
+    <section class="section-padding bg-black">
+      <div class="container">
+        <h2 class="section-title">Your Market. Your Moment.</h2>
+        <p class="section-subtitle">Give users an instant snapshot of the financial markets.</p>
+        
+        <div class="grid grid-cols-2 md:grid-cols-4">
+          <div class="stat-card">
+            <div class="stat-value text-green-400" style="color: #4ade80;">+1.24%</div>
+            <div class="stat-label">Market Indices (S&P 500)</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" style="color: #60a5fa;">NVDA</div>
+            <div class="stat-label">Top Gainers</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" style="color: #f87171;">TSLA</div>
+            <div class="stat-label">Top Losers</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" style="color: #a78bfa;">AAPL</div>
+            <div class="stat-label">Most Active Stocks</div>
+          </div>
+          <div class="stat-card" style="grid-column: span 2;">
+            <div class="stat-value">Bullish</div>
+            <div class="stat-label">Overall Market Trend</div>
+          </div>
+          <div class="stat-card" style="grid-column: span 2;">
+            <div style="display:flex; justify-content:space-around; align-items:center; width:100%; flex-wrap:wrap; gap:8px;">
+              <div>
+                <div class="stat-value" style="color: #4ade80;">142</div>
+                <div class="stat-label">52-Week Highs</div>
+              </div>
+              <div>
+                <div class="stat-value" style="color: #f87171;">31</div>
+                <div class="stat-label">52-Week Lows</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Why Choose Us -->
+    <section class="section-padding bg-dark border-t" style="border-top: 1px solid var(--border-color);">
+      <div class="container">
+        <h2 class="section-title">Built Around Better Investing</h2>
+        <p class="section-subtitle">Introduce the brokerage's key advantages.</p>
+        
+        <div class="grid grid-cols-3 md:grid-cols-2">
+          <div class="card">
+            <svg class="card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            <h3>Lightning-Fast Execution</h3>
+            <p>Our proprietary matching engine ensures nanosecond latency for optimal price fills.</p>
+          </div>
+          <div class="card">
+            <svg class="card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M16 12l-4-4-4 4M12 8v8"/></svg>
+            <h3>Transparent Pricing</h3>
+            <p>Zero hidden fees. We believe in complete transparency so you keep more of your profits.</p>
+          </div>
+          <div class="card">
+            <svg class="card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
+            <h3>Advanced Market Intelligence</h3>
+            <p>Institutional grade data feeds, Level II quotes, and proprietary sentiment analysis.</p>
+          </div>
+          <div class="card">
+            <svg class="card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 22-8-4.5v-7.5l8-4.5 8 4.5v7.5z"/><path d="m9 12 2 2 4-4"/></svg>
+            <h3>Bank-Grade Security</h3>
+            <p>Cold storage architecture, military-grade encryption, and $5M insurance per account.</p>
+          </div>
+          <div class="card">
+            <svg class="card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+            <h3>Powerful Trading Tools</h3>
+            <p>Fully customizable workspace with over 100+ technical indicators built right in.</p>
+          </div>
+          <div class="card">
+            <svg class="card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+            <h3>Seamless Portfolio Management</h3>
+            <p>Automate your investments, rebalance with one click, and track holistic performance.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Trading Platform -->
+    <section id="platform" class="section-padding bg-black border-t" style="border-top: 1px solid var(--border-color);">
+      <div class="container flex flex-col md:flex-row items-center justify-between gap-8" style="display:flex; flex-wrap:wrap;">
+        <div style="flex:1; min-width:300px;">
+          <h2 class="section-title text-left">Everything You Need to Trade</h2>
+          <p class="section-subtitle text-left" style="margin-bottom:32px;">Experience a platform built for speed, reliability, and precision.</p>
+          
+          <div class="flex flex-col gap-4 mb-8">
+            <div class="list-item">
+              <svg class="list-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              <div><strong>Real-time stock prices:</strong> Tick-by-tick updates direct from the exchange.</div>
+            </div>
+            <div class="list-item">
+              <svg class="list-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              <div><strong>Interactive charts:</strong> Draw, annotate, and analyze market trends.</div>
+            </div>
+            <div class="list-item">
+              <svg class="list-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              <div><strong>Advanced technical indicators:</strong> MACD, RSI, Bollinger Bands, and more.</div>
+            </div>
+            <div class="list-item">
+              <svg class="list-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              <div><strong>Custom watchlists:</strong> Track sectors, ideas, and opportunities in real-time.</div>
+            </div>
+            <div class="list-item">
+              <svg class="list-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              <div><strong>One-click trading:</strong> Execute complex options spreads in milliseconds.</div>
+            </div>
+            <div class="list-item">
+              <svg class="list-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              <div><strong>Portfolio tracking:</strong> Granular P&L and risk exposure metrics.</div>
+            </div>
+          </div>
+          
+          <a href="services.html" class="btn-primary">
+            Explore the Platform
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
+        </div>
+        <div style="flex:1; min-width:300px;">
+          <!-- Placeholder for platform screenshot -->
+          <div style="width:100%; aspect-ratio:16/10; background-color:var(--card-bg); border:1px solid var(--border-color); border-radius:16px; overflow:hidden; position:relative;">
+            <div style="position:absolute; inset:0; background:url('https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=2070&auto=format&fit=crop') center/cover; opacity:0.5;"></div>
+            <div style="position:absolute; inset:0; background:linear-gradient(to top right, rgba(0,0,0,0.8), transparent);"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Investment Opportunities -->
+    <section class="section-padding bg-dark border-t" style="border-top: 1px solid var(--border-color);">
+      <div class="container">
+        <h2 class="section-title">Discover What's Next</h2>
+        <p class="section-subtitle">Present different ways customers can invest.</p>
+        
+        <div class="grid grid-cols-3 md:grid-cols-2">
+          <div class="card" style="text-align:center;">
+            <h3 style="color:var(--accent-color); font-size:1.5rem; margin-bottom:8px;">Equities</h3>
+            <p>Access thousands of domestic and international stocks.</p>
+          </div>
+          <div class="card" style="text-align:center;">
+            <h3 style="color:var(--accent-color); font-size:1.5rem; margin-bottom:8px;">ETFs</h3>
+            <p>Diversify your portfolio instantly with broad market funds.</p>
+          </div>
+          <div class="card" style="text-align:center;">
+            <h3 style="color:var(--accent-color); font-size:1.5rem; margin-bottom:8px;">Mutual Funds</h3>
+            <p>Invest in expertly managed collections of stocks and bonds.</p>
+          </div>
+          <div class="card" style="text-align:center;">
+            <h3 style="color:var(--accent-color); font-size:1.5rem; margin-bottom:8px;">IPOs</h3>
+            <p>Get early access to the market's newest public companies.</p>
+          </div>
+          <div class="card" style="text-align:center;">
+            <h3 style="color:var(--accent-color); font-size:1.5rem; margin-bottom:8px;">Bonds</h3>
+            <p>Secure steady income streams with corporate and treasury bonds.</p>
+          </div>
+          <div class="card" style="text-align:center;">
+            <h3 style="color:var(--accent-color); font-size:1.5rem; margin-bottom:8px;">Derivatives</h3>
+            <p>Hedge risk and leverage capital with options and futures.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Market Intelligence -->
+    <section class="section-padding bg-black border-t" style="border-top: 1px solid var(--border-color);">
+      <div class="container">
+        <h2 class="section-title">Insights That Move With the Market</h2>
+        <p class="section-subtitle">Position the brokerage as an intelligent research platform.</p>
+        
+        <div class="grid grid-cols-2 md:grid-cols-2" style="gap:48px;">
+          <div>
+            <h3 style="font-size:1.5rem; margin-bottom:12px; color:var(--text-primary);">Real-Time Market Analysis</h3>
+            <p style="color:var(--text-secondary); margin-bottom:24px;">Streaming commentary directly from the trading floor as news breaks.</p>
+          </div>
+          <div>
+            <h3 style="font-size:1.5rem; margin-bottom:12px; color:var(--text-primary);">Expert Research</h3>
+            <p style="color:var(--text-secondary); margin-bottom:24px;">In-depth reports from our award-winning macroeconomic analysts.</p>
+          </div>
+          <div>
+            <h3 style="font-size:1.5rem; margin-bottom:12px; color:var(--text-primary);">Stock Signals</h3>
+            <p style="color:var(--text-secondary); margin-bottom:24px;">Algorithmic trade alerts based on unusual volume and price action.</p>
+          </div>
+          <div>
+            <h3 style="font-size:1.5rem; margin-bottom:12px; color:var(--text-primary);">Earnings Insights</h3>
+            <p style="color:var(--text-secondary); margin-bottom:24px;">Comprehensive breakdowns of corporate balance sheets and forward guidance.</p>
+          </div>
+          <div>
+            <h3 style="font-size:1.5rem; margin-bottom:12px; color:var(--text-primary);">Economic Trends</h3>
+            <p style="color:var(--text-secondary); margin-bottom:24px;">Track inflation, jobs data, and central bank policy shifts.</p>
+          </div>
+          <div>
+            <h3 style="font-size:1.5rem; margin-bottom:12px; color:var(--text-primary);">Daily Market Briefs</h3>
+            <p style="color:var(--text-secondary); margin-bottom:24px;">Start your day with a concise summary of overnight action and key levels.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. Portfolio Section -->
+    <section class="section-padding bg-dark border-t" style="border-top: 1px solid var(--border-color);">
+      <div class="container flex flex-col md:flex-row items-center justify-between gap-8" style="display:flex; flex-wrap:wrap; flex-direction:row-reverse;">
+        <div style="flex:1; min-width:300px;">
+          <h2 class="section-title text-left">See Your Wealth From Every Angle</h2>
+          <p class="section-subtitle text-left" style="margin-bottom:32px;">Understand and manage your investments with absolute clarity.</p>
+          
+          <div class="flex flex-col gap-4 mb-8">
+            <div class="list-item">
+              <svg class="list-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m16 12-4-4-4 4"/><path d="M12 8v8"/></svg>
+              <div><strong>Portfolio performance:</strong> Track your wealth growth over time.</div>
+            </div>
+            <div class="list-item">
+              <svg class="list-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"/><path d="M22 12A10 10 0 0 0 12 2v10z"/></svg>
+              <div><strong>Asset allocation:</strong> Visualize your exposure across different sectors.</div>
+            </div>
+            <div class="list-item">
+              <svg class="list-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" x2="12" y1="2" y2="22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+              <div><strong>Profit & Loss:</strong> Realized and unrealized gains mapped cleanly.</div>
+            </div>
+            <div class="list-item">
+              <svg class="list-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+              <div><strong>Investment returns:</strong> Benchmarked against major indices.</div>
+            </div>
+            <div class="list-item">
+              <svg class="list-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              <div><strong>Risk overview:</strong> Beta, Volatility, and VaR metrics calculated daily.</div>
+            </div>
+            <div class="list-item">
+              <svg class="list-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/><path d="M8 14h.01"/><path d="M12 14h.01"/><path d="M16 14h.01"/><path d="M8 18h.01"/><path d="M12 18h.01"/><path d="M16 18h.01"/></svg>
+              <div><strong>Transaction history:</strong> Exportable tax documents and statements.</div>
+            </div>
+          </div>
+          
+          <a href="login.html" class="btn-primary">
+            View Your Portfolio
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
+        </div>
+        <div style="flex:1; min-width:300px;">
+          <!-- Placeholder for portfolio image -->
+          <div style="width:100%; aspect-ratio:16/12; background-color:var(--card-bg); border:1px solid var(--border-color); border-radius:16px; overflow:hidden; position:relative;">
+             <div style="position:absolute; inset:0; background:url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop') center/cover; opacity:0.6;"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. Security Section -->
+    <section class="section-padding bg-black border-t" style="border-top: 1px solid var(--border-color);">
+      <div class="container text-center">
+        <h2 class="section-title">Your Money. Protected.</h2>
+        <p class="section-subtitle">Build trust around financial security.</p>
+        
+        <div class="grid grid-cols-3 md:grid-cols-2" style="margin-top:48px;">
+          <div style="padding:24px;">
+            <svg style="color:var(--accent-color); width:48px; height:48px; margin:0 auto 16px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            <h4 style="font-size:1.25rem; font-weight:600; margin-bottom:8px;">Multi-layer account protection</h4>
+            <p style="color:var(--text-secondary); font-size:0.875rem;">MFA and hardware key support standard on all accounts.</p>
+          </div>
+          <div style="padding:24px;">
+            <svg style="color:var(--accent-color); width:48px; height:48px; margin:0 auto 16px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
+            <h4 style="font-size:1.25rem; font-weight:600; margin-bottom:8px;">Secure transactions</h4>
+            <p style="color:var(--text-secondary); font-size:0.875rem;">Fraud-detection algorithms monitor all inbound and outbound wire transfers.</p>
+          </div>
+          <div style="padding:24px;">
+            <svg style="color:var(--accent-color); width:48px; height:48px; margin:0 auto 16px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21 2-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg>
+            <h4 style="font-size:1.25rem; font-weight:600; margin-bottom:8px;">Data encryption</h4>
+            <p style="color:var(--text-secondary); font-size:0.875rem;">End-to-end AES-256 bit encryption for all personal and financial data.</p>
+          </div>
+          <div style="padding:24px;">
+            <svg style="color:var(--accent-color); width:48px; height:48px; margin:0 auto 16px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h3l3-9 5 18 3-9h5"/></svg>
+            <h4 style="font-size:1.25rem; font-weight:600; margin-bottom:8px;">Account monitoring</h4>
+            <p style="color:var(--text-secondary); font-size:0.875rem;">24/7 AI-driven anomaly detection guards against unauthorized access.</p>
+          </div>
+          <div style="padding:24px;">
+            <svg style="color:var(--accent-color); width:48px; height:48px; margin:0 auto 16px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            <h4 style="font-size:1.25rem; font-weight:600; margin-bottom:8px;">Identity verification</h4>
+            <p style="color:var(--text-secondary); font-size:0.875rem;">Strict KYC/AML protocols ensure only you control your funds.</p>
+          </div>
+          <div style="padding:24px;">
+            <svg style="color:var(--accent-color); width:48px; height:48px; margin:0 auto 16px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+            <h4 style="font-size:1.25rem; font-weight:600; margin-bottom:8px;">Privacy-first infrastructure</h4>
+            <p style="color:var(--text-secondary); font-size:0.875rem;">We never sell your order flow. Your trade data is yours alone.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. Education Section -->
+    <section class="section-padding bg-dark border-t" style="border-top: 1px solid var(--border-color);">
+      <div class="container">
+        <h2 class="section-title">Investing Starts With Understanding</h2>
+        <p class="section-subtitle">Help beginners and experienced investors learn.</p>
+        
+        <div class="grid grid-cols-4 md:grid-cols-2" style="margin-bottom:48px;">
+          <div class="card" style="display:flex; flex-direction:column; justify-content:space-between; height:100%;">
+            <div>
+              <h3 style="font-size:1.25rem; margin-bottom:12px;">Market 101</h3>
+              <p style="color:var(--text-secondary); margin-bottom:24px;">Learn the fundamentals of stocks, bonds, and ETFs.</p>
+            </div>
+            <a href="#" style="color:var(--accent-color); font-weight:500; font-size:0.875rem;">Read Guide →</a>
+          </div>
+          <div class="card" style="display:flex; flex-direction:column; justify-content:space-between; height:100%;">
+            <div>
+              <h3 style="font-size:1.25rem; margin-bottom:12px;">Trading Strategies</h3>
+              <p style="color:var(--text-secondary); margin-bottom:24px;">Understand different approaches like day trading and value investing.</p>
+            </div>
+            <a href="#" style="color:var(--accent-color); font-weight:500; font-size:0.875rem;">Read Guide →</a>
+          </div>
+          <div class="card" style="display:flex; flex-direction:column; justify-content:space-between; height:100%;">
+            <div>
+              <h3 style="font-size:1.25rem; margin-bottom:12px;">Investment Guides</h3>
+              <p style="color:var(--text-secondary); margin-bottom:24px;">Build better knowledge for retirement planning and wealth building.</p>
+            </div>
+            <a href="#" style="color:var(--accent-color); font-weight:500; font-size:0.875rem;">Read Guide →</a>
+          </div>
+          <div class="card" style="display:flex; flex-direction:column; justify-content:space-between; height:100%;">
+            <div>
+              <h3 style="font-size:1.25rem; margin-bottom:12px;">Market Glossary</h3>
+              <p style="color:var(--text-secondary); margin-bottom:24px;">Simplify financial terminology and complex jargon.</p>
+            </div>
+            <a href="#" style="color:var(--accent-color); font-weight:500; font-size:0.875rem;">Read Guide →</a>
+          </div>
+        </div>
+        
+        <div class="text-center">
+          <a href="blog.html" class="btn-secondary">
+            Start Learning
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left:8px;"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="section-padding bg-black border-t" style="border-top: 1px solid var(--border-color);">
+      <div class="container">
+        <h2 class="section-title">Don't Just Take Our Word For It</h2>
+        <p class="section-subtitle">See what professional traders are saying about Apex Brokerage.</p>
+        
+        <div class="testimonial-carousel">
+          <div class="carousel-container">
+            <div class="carousel-track" id="testimonial-track">
+              <!-- Slide 1 -->
+              <div class="carousel-slide">
+                <div class="card testimonial-card" style="display:flex; flex-direction:column; justify-content:space-between; height:100%;">
+                  <p style="font-size:1.125rem; font-style:italic; margin-bottom:24px;">"The execution speed on Apex is unmatched. Moving my institutional flow here was the best decision I've made this year."</p>
+                  <div style="display:flex; align-items:center; gap:16px;">
+                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=100&h=100&fit=crop" alt="Sarah Jenkins" style="width:48px; height:48px; border-radius:50%; object-fit:cover;">
+                    <div>
+                      <h4 style="font-weight:600; font-size:1rem;">Sarah Jenkins</h4>
+                      <p style="color:var(--text-secondary); font-size:0.875rem;">Hedge Fund Manager</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Slide 2 -->
+              <div class="carousel-slide">
+                <div class="card testimonial-card" style="display:flex; flex-direction:column; justify-content:space-between; height:100%;">
+                  <p style="font-size:1.125rem; font-style:italic; margin-bottom:24px;">"Finally, a brokerage that understands what active day traders need. The built-in charting and Level II data are phenomenal."</p>
+                  <div style="display:flex; align-items:center; gap:16px;">
+                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=100&h=100&fit=crop" alt="Michael Chen" style="width:48px; height:48px; border-radius:50%; object-fit:cover;">
+                    <div>
+                      <h4 style="font-weight:600; font-size:1rem;">Michael Chen</h4>
+                      <p style="color:var(--text-secondary); font-size:0.875rem;">Independent Trader</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Slide 3 -->
+              <div class="carousel-slide">
+                <div class="card testimonial-card" style="display:flex; flex-direction:column; justify-content:space-between; height:100%;">
+                  <p style="font-size:1.125rem; font-style:italic; margin-bottom:24px;">"The UI is absolutely beautiful. It's rare to find a platform that is this powerful yet so intuitive and clean to look at all day."</p>
+                  <div style="display:flex; align-items:center; gap:16px;">
+                    <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=100&h=100&fit=crop" alt="David Rodriguez" style="width:48px; height:48px; border-radius:50%; object-fit:cover;">
+                    <div>
+                      <h4 style="font-weight:600; font-size:1rem;">David Rodriguez</h4>
+                      <p style="color:var(--text-secondary); font-size:0.875rem;">Retail Investor</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="carousel-controls">
+            <button id="carousel-prev" class="carousel-btn" aria-label="Previous testimonial">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+            </button>
+            <div class="carousel-dots" id="carousel-dots"></div>
+            <button id="carousel-next" class="carousel-btn" aria-label="Next testimonial">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10. Final CTA -->
+    <section class="cta-section">
+      <div class="container">
+        <h2 class="cta-title">The Market Is Moving.<br>Are You Ready?</h2>
+        <p class="cta-subtitle">Open your brokerage account and access the tools, insights, and opportunities you need to invest with confidence.</p>
+        
+        <div class="flex flex-wrap items-center justify-center gap-4">
+          <a href="login.html" class="btn-primary" style="padding:16px 32px; font-size:1.125rem;">
+            Start Investing
+          </a>
+          <a href="contact.html" class="btn-secondary" style="padding:16px 32px; font-size:1.125rem;">
+            Talk to an Expert
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <footer class="premium-footer">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <a href="index.html" class="nav-brand" style="margin-bottom: 24px; display: inline-flex;">
+            <img src="logo_0081.webp" alt="Stackly Logo">
+          </a>
+          <p style="color: var(--text-secondary); font-size: 0.875rem; line-height: 1.6; max-width: 320px;">
+            The modern standard for intelligent market access. Institutional-grade execution architecture built for the focused investor.
+          </p>
+          <div class="footer-socials">
+            <a href="#" class="footer-social-link">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>
+            </a>
+            <a href="#" class="footer-social-link">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+            <a href="#" class="footer-social-link">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Platform</h4>
+          <ul class="footer-links">
+            <li><a href="services.html">Features</a></li>
+            <li><a href="services.html">Pricing</a></li>
+            <li><a href="#">Security</a></li>
+            <li><a href="#">API Access</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul class="footer-links">
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="#">Careers</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <ul class="footer-links">
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+            <li><a href="#">Cookie Policy</a></li>
+            <li><a href="#">Disclosures</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-copyright">
+          © 2026 Stackly Brokerage Ltd. All rights reserved.
+        </div>
+        <div style="display: flex; gap: 24px;">
+          <form style="display: flex; align-items: center; gap: 8px;">
+            <span style="font-size: 0.875rem; color: var(--text-primary); font-weight: 500;">Subscribe to Newsletter:</span>
+            <input type="email" placeholder="Enter email" style="background: var(--card-bg); border: 1px solid var(--border-color); color: white; padding: 6px 12px; border-radius: 4px; font-size: 0.875rem; outline: none;">
+            <button type="button" class="btn-primary" style="padding: 6px 16px; border-radius: 4px; font-size: 0.875rem;">Done</button>
+          </form>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <script src="sonar.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
+
