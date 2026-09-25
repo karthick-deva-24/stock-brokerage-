@@ -337,6 +337,18 @@ a {
   border-color: var(--accent-color);
 }
 
+.form-control.is-invalid {
+  border-color: #ef4444 !important;
+  box-shadow: 0 0 0 1px #ef4444 !important;
+}
+
+.error-message {
+  color: #f87171;
+  font-size: 0.8125rem;
+  margin-top: 4px;
+  display: none;
+}
+
 /* Utilities */
 .mb-2 { margin-bottom: 8px; }
 .mb-4 { margin-bottom: 16px; }

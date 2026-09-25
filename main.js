@@ -1,4 +1,60 @@
 document.addEventListener("DOMContentLoaded", () => {
+  // Initialize AOS (Animate On Scroll)
+  if (typeof AOS !== 'undefined') {
+    AOS.init({
+      duration: 800,
+      easing: 'ease-out-cubic',
+      once: true,
+      offset: 60
+    });
+  }
+
+  // Initialize GSAP & ScrollTrigger Animations
+  if (typeof gsap !== 'undefined') {
+    if (typeof ScrollTrigger !== 'undefined') {
+      gsap.registerPlugin(ScrollTrigger);
+    }
+
+    // Hero element stagger animation
+    const heroContent = document.querySelectorAll('.hero-slide.active .eyebrow, .hero-slide.active h1, .hero-slide.active p, .hero-slide.active .hero-actions');
+    if (heroContent.length > 0) {
+      gsap.from(heroContent, {
+        y: 30,
+        opacity: 0,
+        duration: 1,
+        stagger: 0.15,
+        ease: 'power3.out'
+      });
+    }
+
+    // Card hover micro-animations
+    gsap.utils.toArray('.stat-card, .card, .stat-card-dash').forEach(card => {
+      card.addEventListener('mouseenter', () => {
+        gsap.to(card, { y: -6, scale: 1.02, duration: 0.25, ease: 'power2.out' });
+      });
+      card.addEventListener('mouseleave', () => {
+        gsap.to(card, { y: 0, scale: 1, duration: 0.25, ease: 'power2.out' });
+      });
+    });
+
+    // ScrollTrigger reveal for Section Titles
+    if (typeof ScrollTrigger !== 'undefined') {
+      gsap.utils.toArray('.section-title').forEach(title => {
+        gsap.from(title, {
+          scrollTrigger: {
+            trigger: title,
+            start: 'top 85%',
+            toggleActions: 'play none none none'
+          },
+          y: 30,
+          opacity: 0,
+          duration: 0.8,
+          ease: 'power2.out'
+        });
+      });
+    }
+  }
+
   // Mobile Menu Toggle
   const menuBtn = document.getElementById('mobile-menu-btn');
   const mobileNav = document.getElementById('mobile-nav');
@@ -142,21 +198,37 @@ document.addEventListener("DOMContentLoaded", () => {
   const allLinks = document.querySelectorAll('a');
   allLinks.forEach(link => {
     link.addEventListener('click', (e) => {
-      // Exclude navbar, mobile-nav, premium-footer, footer-bottom, sidebar
+      // Exclude navbar, mobile-nav, footer, sidebar, dashboards, and internal action links
       const isExcluded = link.closest('.navbar') || 
                          link.closest('.mobile-nav') || 
                          link.closest('.premium-footer') || 
                          link.closest('.footer-bottom') || 
                          link.closest('.sidebar') ||
                          link.closest('.sidebar-menu') ||
+                         link.closest('.dashboard-layout') ||
+                         link.closest('.dashboard-main') ||
+                         link.closest('.content-section') ||
                          link.getAttribute('href') === '#' ||
+                         link.getAttribute('href') === 'javascript:void(0)' ||
                          link.id === 'backToHomeBtn' ||
-                         link.hasAttribute('target'); // Ignore _blank etc just in case
+                         link.hasAttribute('target') ||
+                         link.hasAttribute('data-tab') ||
+                         link.classList.contains('action-btn') ||
+                         link.classList.contains('nav-btn');
 
       if (!isExcluded) {
         e.preventDefault();
         window.location.href = '404.html';
       }
+    });
+  });
+
+  // 1b. Handle footer social media icon links -> redirect to 404.html
+  const socialLinks = document.querySelectorAll('.footer-social-link');
+  socialLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.location.href = '404.html';
     });
   });
 
@@ -173,8 +245,13 @@ document.addEventListener("DOMContentLoaded", () => {
                          form.closest('.footer-bottom') || 
                          form.closest('.sidebar') ||
                          form.closest('.sidebar-menu') ||
+                         form.closest('.dashboard-layout') ||
+                         form.closest('.dashboard-main') ||
+                         form.closest('.content-section') ||
                          form.id === 'loginForm' ||
-                         form.id === 'signupForm';
+                         form.id === 'signupForm' ||
+                         form.id === 'contactForm' ||
+                         form.id === 'contactNewsletterForm';
                          
       if (form.reportValidity()) {
         if (!isExcluded) {
@@ -197,8 +274,15 @@ document.addEventListener("DOMContentLoaded", () => {
                                 form.closest('.footer-bottom') || 
                                 form.closest('.sidebar') ||
                                 form.closest('.sidebar-menu') ||
+                                form.closest('.dashboard-layout') ||
+                                form.closest('.dashboard-main') ||
+                                form.closest('.content-section') ||
                                 form.id === 'loginForm' ||
-                                form.id === 'signupForm';
+                                form.id === 'signupForm' ||
+                                form.id === 'contactForm' ||
+                                form.id === 'contactNewsletterForm' ||
+                                btn.classList.contains('action-btn') ||
+                                btn.hasAttribute('data-msg');
              if (!isExcluded) {
                e.preventDefault();
                window.location.href = '404.html';

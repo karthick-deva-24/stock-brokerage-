@@ -6,6 +6,8 @@
   <title>About Us - Apex Brokerage</title>
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- AOS (Animate On Scroll) CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
 </head>
 <body>
   <nav class="navbar">
@@ -53,7 +55,7 @@
               Powering Smarter Market Participation
             </div>
             <h1 class="text-balance">About Apex Brokerage</h1>
-            <p class="text-pretty">We are a modern stock brokerage built to redefine the future of trading. By combining institutional-grade technology with an intuitive, seamless user experience, our mission is to empower traders of all levels to navigate the markets with confidence.</p>
+            <p class="text-pretty">We are a next-generation stock brokerage built to redefine how modern investors interact with financial markets. By combining institutional-grade infrastructure with intuitive, user-centric technology, our platform empowers traders worldwide to make informed decisions with speed, security, and absolute confidence.</p>
             <div class="hero-actions">
               <a href="login.html" class="btn-primary">Explore Our Platform</a>
             </div>
@@ -239,31 +241,22 @@
       <div class="footer-grid">
         <div class="footer-col">
           <a href="index.html" class="nav-brand" style="margin-bottom: 24px; display: inline-flex;">
-            <img src="logo_0081.webp" alt="Stackly Logo">
+            <img src="logo_0081.webp" alt="Apex Brokerage Logo">
           </a>
           <p style="color: var(--text-secondary); font-size: 0.875rem; line-height: 1.6; max-width: 320px;">
             The modern standard for intelligent market access. Institutional-grade execution architecture built for the focused investor.
           </p>
           <div class="footer-socials">
-            <a href="#" class="footer-social-link">
+            <a href="404.html" class="footer-social-link">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>
             </a>
-            <a href="#" class="footer-social-link">
+            <a href="404.html" class="footer-social-link">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
             </a>
-            <a href="#" class="footer-social-link">
+            <a href="404.html" class="footer-social-link">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
             </a>
           </div>
-        </div>
-        <div class="footer-col">
-          <h4>Platform</h4>
-          <ul class="footer-links">
-            <li><a href="services.html">Features</a></li>
-            <li><a href="services.html">Pricing</a></li>
-            <li><a href="#">Security</a></li>
-            <li><a href="#">API Access</a></li>
-          </ul>
         </div>
         <div class="footer-col">
           <h4>Company</h4>
@@ -272,6 +265,15 @@
             <li><a href="blog.html">Blog</a></li>
             <li><a href="contact.html">Contact</a></li>
             <li><a href="#">Careers</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Platform</h4>
+          <ul class="footer-links">
+            <li><a href="services.html">Features</a></li>
+            <li><a href="services.html">Pricing</a></li>
+            <li><a href="#">Security</a></li>
+            <li><a href="#">API Access</a></li>
           </ul>
         </div>
         <div class="footer-col">
@@ -286,18 +288,16 @@
       </div>
       <div class="footer-bottom">
         <div class="footer-copyright">
-          © 2026 Stackly Brokerage Ltd. All rights reserved.
-        </div>
-        <div style="display: flex; gap: 24px;">
-          <form style="display: flex; align-items: center; gap: 8px;">
-            <span style="font-size: 0.875rem; color: var(--text-primary); font-weight: 500;">Subscribe to Newsletter:</span>
-            <input type="email" placeholder="Enter email" style="background: var(--card-bg); border: 1px solid var(--border-color); color: white; padding: 6px 12px; border-radius: 4px; font-size: 0.875rem; outline: none;">
-            <button type="button" class="btn-primary" style="padding: 6px 16px; border-radius: 4px; font-size: 0.875rem;">Done</button>
-          </form>
+          © 2026 Apex Brokerage Ltd. All rights reserved.
         </div>
       </div>
     </footer>
   </main>
+  <!-- GSAP & ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <!-- AOS (Animate On Scroll) JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
   <script src="sonar.js"></script>
   <script src="main.js"></script>
 </body>

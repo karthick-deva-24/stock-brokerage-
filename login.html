@@ -6,6 +6,8 @@
   <title>Login - Apex Brokerage</title>
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- AOS (Animate On Scroll) CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
 </head>
 <body>
   <main class="main-container">
@@ -17,16 +19,16 @@
         <img src="logo_0081.webp" alt="Apex Brokerage Logo" style="height:64px; width:auto; object-fit:contain;">
       </a>
 
-      <div class="container grid grid-cols-2" style="position:relative; z-index:10; gap: 64px; align-items: start; max-width: 1120px;">
+      <div class="container" style="position:relative; z-index:10; max-width: 520px; margin: 0 auto;">
         
-        <!-- Left Side: Login Form -->
-        <div style="width: 100%; max-width: 480px; margin: 0 auto;">
+        <!-- Centered Login Form -->
+        <div style="width: 100%;">
           <div class="text-center mb-8">
             <h1 id="formTitle" class="text-balance" style="font-size: 2.5rem; margin-bottom: 16px;">Welcome Back to Your Investment Journey</h1>
             <p id="formSubtitle" class="text-secondary" style="font-size: 1.125rem;">Secure Account Login</p>
           </div>
 
-          <div class="card" style="padding: 32px;">
+          <div class="card" style="padding: 36px;" data-aos="zoom-in">
             <!-- Login Form -->
             <form id="loginForm" style="display:flex; flex-direction:column; gap:24px;">
               <div class="form-group" style="margin-bottom:0;">
@@ -143,73 +145,16 @@
             </script>
           </div>
           
-
         </div>
 
-        <!-- Right Side: Info Sections -->
-        <div style="display: flex; flex-direction: column; gap: 48px;">
-          
-          <!-- Alternative Access -->
-          <div>
-            <h3 style="font-size: 1.5rem; margin-bottom: 24px; border-bottom: 1px solid var(--border-color); padding-bottom: 12px;">Choose Your Access</h3>
-            <div class="grid grid-cols-2" style="gap: 24px;">
-              <div class="card" style="padding: 24px;">
-                <h4 style="color:var(--accent-color); font-size:1.125rem; margin-bottom:12px;">Investor Login</h4>
-                <ul style="list-style:none; display:flex; flex-direction:column; gap:8px; font-size:0.875rem; color:var(--text-secondary);">
-                  <li>✓ Access portfolio</li>
-                  <li>✓ View holdings</li>
-                  <li>✓ Track investments</li>
-                  <li>✓ Manage account</li>
-                </ul>
-              </div>
-              <div class="card" style="padding: 24px;">
-                <h4 style="color:var(--accent-color); font-size:1.125rem; margin-bottom:12px;">Trading Login</h4>
-                <ul style="list-style:none; display:flex; flex-direction:column; gap:8px; font-size:0.875rem; color:var(--text-secondary);">
-                  <li>✓ Access trading platform</li>
-                  <li>✓ Monitor markets</li>
-                  <li>✓ Place eligible orders</li>
-                  <li>✓ View positions</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <!-- Security -->
-          <div>
-            <h3 style="font-size: 1.5rem; margin-bottom: 24px; border-bottom: 1px solid var(--border-color); padding-bottom: 12px;">Your Security Comes First</h3>
-            <div class="grid grid-cols-2" style="gap: 16px;">
-              <div style="display:flex; align-items:center; gap:8px; font-size:0.875rem;">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                Secure authentication
-              </div>
-              <div style="display:flex; align-items:center; gap:8px; font-size:0.875rem;">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-                Account protection
-              </div>
-              <div style="display:flex; align-items:center; gap:8px; font-size:0.875rem;">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg>
-                Encrypted data
-              </div>
-              <div style="display:flex; align-items:center; gap:8px; font-size:0.875rem;">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
-                Login alerts
-              </div>
-            </div>
-          </div>
-
-          <!-- Premium CTA -->
-          <div class="card" style="background: rgba(99,102,241,0.1); border-color: var(--accent-color); text-align: center; padding: 24px;">
-            <h4 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 8px;">Secure Access. Smarter Market Experience.</h4>
-            <p style="font-size: 0.875rem; color: var(--text-secondary);">Your gateway to professional-grade tools.</p>
-          </div>
-
-        </div>
       </div>
-      
     </section>
-    
-
   </main>
+  <!-- GSAP & ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <!-- AOS (Animate On Scroll) JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
   <script src="sonar.js"></script>
   <script src="main.js"></script>
 </body>
